@@ -14,12 +14,8 @@ public class PoolTestMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/spring-pool-showcase-applicationContext.xml");
-//		CatDao catDao = (CatDao) ctx.getBean("catDao");
-//		List<Cat> cats = catDao.getAllCats();
-//		for (Cat c : cats) {
-//			System.out.println("Cat: " + c.getName());
-//		}
+		//ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/spring-pool-showcase-hikaricp-applicationContext.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/spring-pool-showcase-c3p0-applicationContext.xml");
 		PersonaDao personaDao = (PersonaDao) ctx.getBean("personaDao");
 		List<Persona> personas = personaDao.getAll();
 		for (Persona p : personas) {
