@@ -8,4 +8,6 @@ public interface PersonService {
 
 	List<PersonDto> getAll();
 	
+	List<PersonDto> getInId(List<Integer> listIds);
+	
 }
