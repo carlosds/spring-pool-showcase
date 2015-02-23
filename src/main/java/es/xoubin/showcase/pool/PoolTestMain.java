@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import es.xoubin.showcase.pool.dao.PersonaDao;
-import es.xoubin.showcase.pool.entity.Persona;
+import es.xoubin.showcase.pool.dto.PersonDto;
+import es.xoubin.showcase.pool.service.PersonService;
 
 public class PoolTestMain {
 
@@ -16,10 +16,10 @@ public class PoolTestMain {
 	public static void main(String[] args) {
 		//ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/spring-pool-showcase-hikaricp-applicationContext.xml");
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:META-INF/spring/spring-pool-showcase-c3p0-applicationContext.xml");
-		PersonaDao personaDao = (PersonaDao) ctx.getBean("personaDao");
-		List<Persona> personas = personaDao.getAll();
-		for (Persona p : personas) {
-			System.out.println("Persona: " + p.getNombre());
+		PersonService personService = ctx.getBean("personService", PersonService.class);
+		List<PersonDto> persons = personService.getAll();
+		for (PersonDto p : persons) {
+			System.out.println("Person: " + p.getName());
 		}
 	}
 

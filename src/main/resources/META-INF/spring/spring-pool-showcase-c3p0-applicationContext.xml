@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+    <context:component-scan base-package="es.xoubin.showcase.pool" />
+    
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${dataSource.dataSourceClassName}" />
+        <property name="jdbcUrl" value="${dataSource.url}" />
+        <property name="user" value="${dataSource.username}" />
+        <property name="password" value="${dataSource.password}" />
+<!--         <property name="maxPoolSize" value="${dataSource.maxPoolSize}" /> -->
+<!--         <property name="minPoolSize" value="${dataSource.minPoolSize}" /> -->
+<!--         <property name="maxStatements" value="${dataSource.maxStatements}" /> -->
+<!--         <property name="testConnectionOnCheckout" value="${dataSource.testConnection}" /> -->
+    </bean>
+	
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceProviderClass" value="org.hibernate.jpa.HibernatePersistenceProvider" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="showSql" value="false" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+			</props>
+		</property>
+		<property name="packagesToScan">
+			<list>					
+				<value>es.xoubin.showcase.pool.entity</value>					
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	        <list>
+	            <value>classpath:META-INF/hibernate.properties</value>
+	        </list>
+	    </property>
+	</bean>
+	
+</beans>

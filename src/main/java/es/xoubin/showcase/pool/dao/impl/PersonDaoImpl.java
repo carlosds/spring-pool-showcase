@@ -8,17 +8,17 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Service;
 
-import es.xoubin.showcase.pool.dao.PersonaDao;
-import es.xoubin.showcase.pool.entity.Persona;
+import es.xoubin.showcase.pool.dao.PersonDao;
+import es.xoubin.showcase.pool.entity.Person;
 
-@Service("personaDao")
-public class PersonaDaoImpl implements PersonaDao {
+@Service("personDao")
+public class PersonDaoImpl implements PersonDao {
 
 	@PersistenceContext
 	private EntityManager em;
 	
-	public List<Persona> getAll() {
-		Query query = em.createQuery("SELECT p from Persona as p");
+	public List<Person> getAll() {
+		Query query = em.createQuery("SELECT p from Person as p");
         return query.getResultList();
 	}
 

@@ -8,17 +8,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "persona")
-public class Persona {	
+public class Person {	
 
 	@GeneratedValue
 	@Id
 	private Integer id;
 	
 	@Column(name = "nombre")
-	private String nombre;
+	private String name;
 	
 	@Column(name = "apellidos")
-	private String apellidos;
+	private String surname;
 	
 	public Integer getId() {
 		return id;
@@ -28,20 +28,20 @@ public class Persona {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getApellidos() {
-		return apellidos;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setApellidos(String apellidos) {
-		this.apellidos = apellidos;
-	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}	
 	
 }
